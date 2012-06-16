@@ -1,0 +1,22 @@
+<div id="admin-content">
+    <F3:include href="admin_{{ @admin_template }}.html"/>
+</div>
+<aside>
+    <h3>menu</h3>
+    <nav class="admin-nav">
+        <ul>
+            <li>
+                <a href="{{@BASE}}/admin/settings/list">settings</a>
+            </li>
+            <li>
+                <a href="{{@BASE}}/admin/navigation/list">navigation</a>
+            </li>
+            <li>
+                <a href="{{@BASE}}/admin/page/list">pages</a>
+            </li>
+            <li>
+                <a href="{{@BASE}}/main/user/logout">logout</a>
+            </li>
+        </ul>
+    </nav>
+</aside>

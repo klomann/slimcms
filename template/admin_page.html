@@ -1,0 +1,19 @@
+<h3>page admin list</h3>
+<section>
+    <ul class="admin-ul">
+        <repeat group="{{@list}}" key="{{ @key }}" value="{{ @page }}" counter="{{ @counter }}">
+            <li class="admin-li">
+                <div class="admin-list">
+                    <span><strong>name</strong></span><span>{{@page.name}}</span>
+                    <nav>
+                        <a href="{{@BASE}}/admin/page/edit/{{@page.name}}">edit</a>
+                        <a href="{{@BASE}}/admin/page/delete/{{@page.name}}">delete</a>
+                    </nav>
+                </div>
+            </li>
+        </repeat>
+    </ul>
+</section>
+<section>
+    <a href="{{@BASE}}/admin/page/add">add</a>
+</section>

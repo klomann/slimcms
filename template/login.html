@@ -1,0 +1,14 @@
+<h3>admin login</h3>
+<F3:check if="{{ @message }}">
+    <p><span class="fail">{{ @message }}</span></p>
+</F3:check>
+<form name="login" method="POST" action="{{@BASE}}/main/user/login/go">
+    <fieldset>
+        <legend>login</legend>
+        <label for="username">username</label>
+        <input type="text" name="username" id="username" value="{{@POST.username}}" required/>
+        <label for="pw">pw</label>
+        <input type="password" name="pw" id="pw" required/>
+        <input type="submit" value="login"/>
+    </fieldset>
+</form>

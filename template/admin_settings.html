@@ -1,0 +1,16 @@
+<h3>settings admin list</h3>
+<section>
+    <ul class="admin-ul">
+        <repeat group="{{@list}}" key="{{ @key }}" value="{{ @setting }}" counter="{{ @counter }}">
+            <li class="admin-li">
+                <div class="admin-list">
+                    <span><strong>name:</strong></span><span>{{@setting.name}}</span>
+                    <span><strong>value:</strong></span><span>{{@setting.value}}</span>
+                    <nav>
+                        <a href="{{@BASE}}/admin/settings/edit/{{@setting.name}}">edit</a>
+                    </nav>
+                </div>
+            </li>
+        </repeat>
+    </ul>
+</section>
