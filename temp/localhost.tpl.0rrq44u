@@ -1,7 +1,0 @@
-<article>
-    <h3><?php echo ($_page_titel=F3::get('page_titel')); ?></h3>
-    <p>
-        <?php echo ($_page_content=F3::get('page_content')); ?>
-    </p>
-</article>
-yxcyxc
