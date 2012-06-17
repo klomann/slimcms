@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><?php echo ($_system_titel=F3::get('system_titel')); ?></title>
+        <link rel="stylesheet" type="text/css"
+              href="<?php echo  ($_BASE=F3::get('BASE')) ; ?>/min?base=<?php echo  ($_UI=F3::get('UI')) ; ?>/&amp;files=style.css"/>
+        <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            bkLib.onDomLoaded(function(){
+                new nicEditor({fullPanel : true}).panelInstance('content');
+            });
+             
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div id="container">
+            <header id="header">
+                <h1><?php echo $_system_titel; ?></h1>
+                <nav id="menu">
+                    <ul>
+                        <?php $_counter=0; if (is_array(($_navigation=F3::get('navigation')))):foreach ((($_navigation=F3::get('navigation'))?:array()) as $_key=>$_link):$_counter++; ?>
+                            <li>
+                                <a href="<?php echo  $_BASE ; ?>/<?php echo $_link['section']; ?>/<?php echo $_link['controller']; ?>/<?php echo $_link['action']; ?>/<?php echo $_link['target']; ?>"><?php echo $_link['text']; ?></a>
+                            </li>
+                        <?php endforeach;endif;?>
+                    </ul>
+                </nav>
+            </header>
+            <div id="admin-content">
+    <h2><?php echo ($_controller=F3::get('controller')); ?> list</h2>
+<section>
+    <ul class="admin-ul">
+        <?php $_counter=0; if (is_array(($_list=F3::get('list')))):foreach ((($_list=F3::get('list'))?:array()) as $_key=>$_obj):$_counter++; ?>
+            <li class="admin-li">
+                <div class="admin-list">
+                    <span><strong>name:</strong></span><span><?php echo $_obj['name']; ?></span>
+                    <ul class="admin-ul">
+                        <nav>
+    <a href="<?php echo $_BASE; ?>/main/page/show/<?php echo $_obj['name']; ?>">show</a>
+    <a href="<?php echo $_BASE; ?>/admin/page/edit/<?php echo $_obj['name']; ?>">edit</a>
+    <a href="<?php echo $_BASE; ?>/admin/page/delete/<?php echo $_obj['name']; ?>">delete</a>
+</nav>
+                </div>
+            </li>
+        <?php endforeach;endif;?>
+    </ul>
+</section>
+<?php if (($_add=F3::get('add'))==1): ?>
+    <section>
+        <a class="admin-button" href="<?php echo $_BASE; ?>/admin/<?php echo $_controller; ?>/add">add</a>
+    </section>
+<?php endif; ?>
+
+</div>
+<aside>
+    <h3>menu</h3>
+    <nav class="admin-nav">
+        <ul>
+            <li>
+                <a href="<?php echo $_BASE; ?>/admin/settings/list">settings</a>
+            </li>
+            <li>
+                <a href="<?php echo $_BASE; ?>/admin/navigation/list">navigation</a>
+            </li>
+            <li>
+                <a href="<?php echo $_BASE; ?>/admin/page/list">pages</a>
+            </li>
+            <li>
+                <a href="<?php echo $_BASE; ?>/main/user/logout">logout</a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+            <footer>
+                <?php if (F3::get('SESSION.login')==1): ?>
+                    
+                        <span>username: <?php echo F3::get('SESSION.name'); ?></span>
+                        <a href="<?php echo $_BASE; ?>/admin/panel/start">admin panel</a>
+                        <a href="<?php echo $_BASE; ?>/main/user/logout">logout</a>
+                    
+                    <?php else: ?><a href="<?php echo $_BASE; ?>/main/user/login">admin login</a>
+                <?php endif; ?>
+                <div class="info">
+                    <span>slim cms v 0.1a</span><a href="http://blog.tapez.eu" target="_blank">blog.tapez.eu</a>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

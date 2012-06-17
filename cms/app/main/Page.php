@@ -1,0 +1,12 @@
+<?php
+
+namespace main;
+
+class Page {
+
+    function get_show() {
+        \Standard::getShow();
+    }
+}
+
+?>
