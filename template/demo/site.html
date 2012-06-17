@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{@system_titel}}</title>
+        <link rel="stylesheet" type="text/css"
+              href="{{ @BASE }}/min?base={{ @UI }}/&amp;files=style.css"/>
+        <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            bkLib.onDomLoaded(function(){
+                new nicEditor({fullPanel : true}).panelInstance('content');
+            });
+             
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div id="container">
+            <header id="header">
+                <h1>{{@system_titel}}</h1>
+                <nav id="menu">
+                    <ul>
+                        <repeat group="{{@navigation}}" key="{{ @key }}" value="{{ @link }}" counter="{{ @counter }}">
+                            <li>
+                                <a href="{{ @BASE }}/{{@link.section}}/{{@link.controller}}/{{@link.action}}/{{@link.target}}">{{@link.text}}</a>
+                            </li>
+                        </repeat>
+                    </ul>
+                </nav>
+            </header>
+            <F3:include href="{{ @template }}.html"/>
+            <footer>
+                <F3:check if="{{@SESSION.login}}==1">
+                    <F3:true>
+                        <span>username: {{@SESSION.name}}</span>
+                        <a href="{{@BASE}}/admin/panel/start">admin panel</a>
+                        <a href="{{@BASE}}/main/user/logout">logout</a>
+                    </F3:true>
+                    <F3:false><a href="{{@BASE}}/main/user/login">admin login</a></F3:false>
+                </F3:check>
+                <div class="info">
+                    <span>slim cms v 0.1a</span><a href="http://blog.tapez.eu" target="_blank">blog.tapez.eu</a>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<h2>{{@controller}} editor</h2>
+<form name="{{@controller}}_editor" action="{{@action}}" method="POST">
+    <fieldset>
+        <legend>editor</legend>
+        <label for="name">name</label>
+        <F3:check if="{{@edit}}==1">
+            <F3:true>
+                <span id="name">{{@POST.name}}</span>
+            </F3:true>
+            <F3:false>
+                <input id="name" name="name" type="text" value="{{@POST.name}}"/>
+            </F3:false>
+        </F3:check>
+        <F3:include href="admin_{{ @controller }}_edit.html"/>
+        <input type="submit" value="save"/>
+    </fieldset>
+</form>
