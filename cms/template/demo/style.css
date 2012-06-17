@@ -20,9 +20,11 @@ h3 {
 
 h2 {
     color: #aaa;
-    margin-left: 10px;
+    margin-left: auto;
     border-bottom: 3px solid #aaa;
-    margin-right: 10px;
+    margin-right: auto;
+    padding: 5px;
+    width: 90%;
 }
 #container {
     border-top: 5px solid #aaa;
@@ -160,6 +162,7 @@ fieldset {
 }
 fieldset.login {
     width: 200px;
+    margin: auto;
 }
 legend {
     padding: 5px;

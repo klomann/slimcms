@@ -17,8 +17,6 @@ class User {
     }
     function post_login() {
         \F3::clear('message');
-        $this->checkInput('name');
-        $this->checkInput('pw');
         $name = \F3::get('POST.name');
         $pw = \F3::get('POST.pw');
         $name = \F3::scrub($name);
@@ -40,18 +38,6 @@ class User {
         }
         
     }
-
-    
-    function checkInput($input) {
-        \F3::input($input, function($value) {
-                    if(!\F3::exists('message')) {
-                        if (empty($value)) {
-                            \F3::set('message', 'das '. $input .' feld ist leer');
-                        }
-                    }
-                });
-    }
-
 }
 
 ?>

@@ -28,51 +28,24 @@
                     </ul>
                 </nav>
             </header>
-            <div id="admin-content">
-    <h2><?php echo ($_controller=F3::get('controller')); ?> list</h2>
-<section>
-    <ul class="admin-ul">
-        <?php $_counter=0; if (is_array(($_list=F3::get('list')))):foreach ((($_list=F3::get('list'))?:array()) as $_key=>$_obj):$_counter++; ?>
-            <li class="admin-li">
-                <div class="admin-list">
-                    <span><strong>name:</strong></span><span><?php echo $_obj['name']; ?></span>
-                    <ul class="admin-ul">
-                        <nav>
-    <a href="<?php echo $_BASE; ?>/main/page/show/<?php echo $_obj['name']; ?>">show</a>
-    <a href="<?php echo $_BASE; ?>/admin/page/edit/<?php echo $_obj['name']; ?>">edit</a>
-    <a href="<?php echo $_BASE; ?>/admin/page/delete/<?php echo $_obj['name']; ?>">delete</a>
-</nav>
-                </div>
-            </li>
-        <?php endforeach;endif;?>
-    </ul>
-</section>
-<?php if (($_add=F3::get('add'))==1): ?>
-    <section>
-        <a class="admin-button" href="<?php echo $_BASE; ?>/admin/<?php echo $_controller; ?>/add">add</a>
-    </section>
-<?php endif; ?>
+            <h2>
+    login
+</h2>
 
-</div>
-<aside>
-    <h3>menu</h3>
-    <nav class="admin-nav">
-        <ul>
-            <li>
-                <a href="<?php echo $_BASE; ?>/admin/settings/list">settings</a>
-            </li>
-            <li>
-                <a href="<?php echo $_BASE; ?>/admin/navigation/list">navigation</a>
-            </li>
-            <li>
-                <a href="<?php echo $_BASE; ?>/admin/page/list">pages</a>
-            </li>
-            <li>
-                <a href="<?php echo $_BASE; ?>/main/user/logout">logout</a>
-            </li>
-        </ul>
-    </nav>
-</aside>
+<?php if (($_message=F3::get('message'))): ?>
+    <p><span class="fail"><?php echo  $_message ; ?></span></p>
+<?php endif; ?>
+<form name="login" method="POST" action="<?php echo $_BASE; ?>/main/user/login">
+    <fieldset class="login">
+        <legend>login</legend>
+        <label for="name">name</label>
+        <input type="text" name="name" id="name" value="<?php echo F3::get('POST.name'); ?>"/>
+        <label for="pw">pw</label>
+        <input type="password" name="pw" id="pw"/>
+        <input type="submit" value="login"/>
+    </fieldset>
+</form>
+
             <footer>
                 <?php if (F3::get('SESSION.login')==1): ?>
                     

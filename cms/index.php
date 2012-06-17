@@ -2,7 +2,7 @@
 require __DIR__ . '/lib/base.php';
 
 F3::set('CACHE', FALSE);
-F3::set('DEBUG', 3);
+F3::set('DEBUG', 0);
 F3::set('UI', 'template/demo/');
 F3::set('AUTOLOAD', 'app/');
 //F3::set('DB', new DB(
