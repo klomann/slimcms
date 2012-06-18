@@ -30,6 +30,7 @@ F3::route('GET /@section/@app/@action',
 F3::route('POST /@section/@app/@action', 
         'Standard->load;Standard->routePost;Standard->display');
 
+
 F3::route('GET /sitemap',
 	function() {
 		Web::sitemap();

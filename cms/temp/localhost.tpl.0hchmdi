@@ -26,25 +26,29 @@
                 </nav>
             </header>
             <div id="admin-content">
-    <h2><?php echo ($_app=F3::get('app')); ?> editor</h2>
-<form name="<?php echo $_app; ?>_editor" action="<?php echo ($_action=F3::get('action')); ?>" method="POST">
-    <fieldset>
-        <legend>editor</legend>
-        <label for="name">name</label>
-        <?php if (($_edit=F3::get('edit'))==1): ?>
-            
-                <span id="name"><?php echo F3::get('POST.name'); ?></span>
-            
-            <?php else: ?>
-                <input id="name" name="name" type="text" value="<?php echo F3::get('POST.name'); ?>"/>
-            
+    <h2><?php echo ($_app=F3::get('app')); ?> list</h2>
+<?php if (($_add=F3::get('add'))==1): ?>
+    <section>
+        <a class="admin-button" href="<?php echo $_BASE; ?>/admin/<?php echo $_app; ?>/add">add</a>
+    </section>
+<?php endif; ?>
+<section>
+    <?php $_counter=0; if (is_array(($_list=F3::get('list')))):foreach ((($_list=F3::get('list'))?:array()) as $_key=>$_obj):$_counter++; ?>
+        <div class="admin-list">
+            <span><strong>name:</strong></span><span><?php echo $_obj['name']; ?></span>
+            <ul class="admin-ul">
+                <span><strong>value:</strong></span><span><?php echo $_obj['value']; ?></span>
+<nav>
+    <a href="<?php echo $_BASE; ?>/admin/settings/edit/<?php echo $_obj['name']; ?>">edit</a>
+</nav>
+        </div>
+        <?php if ($_counter%3==0): ?>
+            <div class="clear"></div>
         <?php endif; ?>
-        <label for="value">value</label>
-<input id="value" name="value" type="text" value="<?php echo F3::get('POST.value'); ?>"/>
+    <?php endforeach;endif;?>
+</section>
 
-        <input type="submit" value="save"/>
-    </fieldset>
-</form>
+
 
 </div>
 <aside>
