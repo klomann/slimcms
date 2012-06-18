@@ -1,0 +1,5 @@
+<nav>
+    <a href="<?php echo $_BASE; ?>/main/page/show/<?php echo $_obj['name']; ?>">show</a>
+    <a href="<?php echo $_BASE; ?>/admin/page/edit/<?php echo $_obj['name']; ?>">edit</a>
+    <a href="<?php echo $_BASE; ?>/admin/page/delete/<?php echo $_obj['name']; ?>">delete</a>
+</nav>

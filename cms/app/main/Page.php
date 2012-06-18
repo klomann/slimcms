@@ -5,7 +5,7 @@ namespace main;
 class Page {
 
     function get_show() {
-        \Standard::getShow();
+        \GetHandler::getShow();
     }
 }
 

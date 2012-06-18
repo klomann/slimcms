@@ -2,16 +2,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{@system_titel}}</title>
+        <title>{{@system_titel}} - {{@site_titel}}</title>
         <link rel="stylesheet" type="text/css"
-              href="{{ @BASE }}/min?base={{ @UI }}/&amp;files=style.css"/>
+              href="{{@BASE}}/min?base={{@UI}}&amp;files=style.css"/>
+        <script src="http://code.jquery.com/jquery-latest.min.js"
+        type="text/javascript"></script>
         <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            bkLib.onDomLoaded(function(){
-                new nicEditor({fullPanel : true}).panelInstance('content');
-            });
-             
-        </script>
+        <script src="{{@BASE}}/js/standard.js" type="text/javascript"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
@@ -22,7 +19,7 @@
                     <ul>
                         <repeat group="{{@navigation}}" key="{{ @key }}" value="{{ @link }}" counter="{{ @counter }}">
                             <li>
-                                <a href="{{ @BASE }}/{{@link.section}}/{{@link.controller}}/{{@link.action}}/{{@link.target}}">{{@link.text}}</a>
+                                <a href="{{ @BASE }}/{{@link.section}}/{{@link.app}}/{{@link.action}}/{{@link.target}}">{{@link.text}}</a>
                             </li>
                         </repeat>
                     </ul>
@@ -39,7 +36,7 @@
                     <F3:false><a href="{{@BASE}}/main/user/login">admin login</a></F3:false>
                 </F3:check>
                 <div class="info">
-                    <span>slim cms v 0.1a</span><a href="http://blog.tapez.eu" target="_blank">blog.tapez.eu</a>
+                    <span>slim cms {{@version}}</span><a href="http://blog.tapez.eu" target="_blank">blog.tapez.eu</a>
                 </div>
             </footer>
         </div>

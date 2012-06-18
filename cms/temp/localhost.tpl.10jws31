@@ -1,0 +1,4 @@
+<span><strong>value:</strong></span><span><?php echo $_obj['value']; ?></span>
+<nav>
+    <a href="<?php echo $_BASE; ?>/admin/settings/edit/<?php echo $_obj['name']; ?>">edit</a>
+</nav>

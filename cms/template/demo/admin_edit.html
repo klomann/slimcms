@@ -1,5 +1,5 @@
-<h2>{{@controller}} editor</h2>
-<form name="{{@controller}}_editor" action="{{@action}}" method="POST">
+<h2>{{@app}} editor</h2>
+<form name="{{@app}}_editor" action="{{@action}}" method="POST">
     <fieldset>
         <legend>editor</legend>
         <label for="name">name</label>
@@ -11,7 +11,7 @@
                 <input id="name" name="name" type="text" value="{{@POST.name}}"/>
             </F3:false>
         </F3:check>
-        <F3:include href="admin_{{ @controller }}_edit.html"/>
+        <F3:include href="admin_{{ @app }}_edit.html"/>
         <input type="submit" value="save"/>
     </fieldset>
 </form>

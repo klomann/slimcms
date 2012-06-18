@@ -4,27 +4,29 @@ namespace admin;
 class Navigation {
 
     function get_list() {
-        \Standard::getList('', 'sort ASC');
+        \F3::set('site_titel', 'admin');
+        \GetHandler::getList('', 'sort ASC');
     }
     
     function get_edit() {
-        \Standard::getEdit();
+        \F3::set('site_titel', 'admin');
+        \GetHandler::getEdit();
     }
     
     function post_edit() {
-        \Standard::postEdit();
+        \PostHandler::postEdit();
     }
     
     function get_add() {
-        \Standard::getAdd();
+        \GetHandler::getAdd();
     }
     
     function post_add() {
-        \Standard::postAdd();
+        \PostHandler::postAdd();
     }
     
     function get_delete() {
-        \Standard::getDelete();
+        \GetHandler::getDelete();
     }
     
 

@@ -32,8 +32,11 @@ class Standard {
 
     function route($kind) {
         $section = F3::scrub(F3::get('PARAMS.section'));
-        $controller = F3::scrub(F3::get('PARAMS.controller'));
+        $app = F3::scrub(F3::get('PARAMS.app'));
         $action = F3::scrub(F3::get('PARAMS.action'));
+        if ($section == 'admin' || $section == 'main') {
+            
+        
         $login = F3::get('SESSION.login');
         if ($section == 'admin' && $login != 1) {
             F3::reroute('/main/error/show/0');
@@ -41,7 +44,10 @@ class Standard {
             if ($section == 'admin') {
                 F3::set('template', 'admin');
             }
-            F3::call($section . '\\' . $controller . '->' . $kind . '_' . $action);
+            F3::call($section . '\\' . $app . '->' . $kind . '_' . $action);
+        }
+        } else {
+            F3::reroute('/main/error/show/1');
         }
     }
 
@@ -53,109 +59,15 @@ class Standard {
     }
 
     static function loadByName($table) {
-        $obj = new \Axon($table);
+        $obj = new Axon($table);
         $obj->def('num', 'COUNT(name)');
         $name = F3::scrub(F3::get('PARAMS.param'));
         $obj->load(array('name=:name', array(':name' => $name)));
         return $obj;
     }
-
-    static function getEdit($model = '') {
-        $controller = self::getController();
-        if ($model == '') {
-            $model = $controller;
-        }
-        $obj = self::loadByName($model);
-
-        if ($obj->num == 1) {
-            $obj->copyTo('POST');
-            F3::set('action', '{{@BASE}}/admin/' . $controller . '/edit/{{@PARAMS.param}}');
-            F3::set('edit', 1);
-            F3::set('controller', $controller);
-            F3::set('admin_template', 'edit');
-        } else {
-            F3::reroute('/main/error/show/1');
-        }
-    }
-
-    static function postEdit($model = '') {
-        $controller = self::getController();
-        if ($model == '') {
-            $model = $controller;
-        }
-        $obj = self::loadByName($model);
-
-        if ($obj->num == 1) {
-            $obj->copyFrom('POST');
-            $obj->save();
-            F3::reroute('/admin/' . $controller . '/edit/' . $obj->name);
-        } else {
-            F3::reroute('/main/error/show/1');
-        }
-    }
-
-    static function getAdd() {
-        $controller = self::getController();
-        F3::set('edit', 0);
-        F3::set('action', '{{@BASE}}/admin/' . $controller . '/add');
-        F3::set('controller', $controller);
-        F3::set('admin_template', 'edit');
-    }
-
-    static function postAdd($model = '') {
-        $controller = self::getController();
-        if ($model == '') {
-            $model = $controller;
-        }
-        $obj = new Axon($model);
-
-        $obj->copyFrom('POST');
-        $obj->save();
-        F3::reroute('/admin/' . $controller . '/edit/' . $obj->name);
-    }
-
-    static function getList($model = '', $order = '', $section = 'admin', $add = 1) {
-        $controller = self::getController();
-        if ($model == '') {
-            $model = $controller;
-        }
-        $obj = new Axon($model);
-        $list = $obj->afind('', $order);
-        F3::set('list', $list);
-        F3::set('add', $add);
-        F3::set('controller', $controller);
-        F3::set($section . '_template', 'list');
-    }
-
-    static function getDelete($model = '') {
-        $controller = self::getController();
-        if ($model == '') {
-            $model = $controller;
-        }
-        $obj = self::loadByName($model);
-        if ($obj->num == 1) {
-            $obj->erase();
-            F3::reroute('/admin/' . $controller . '/list');
-        } else {
-            F3::reroute('/main/error/show/1');
-        }
-    }
-
-    static function getShow($model = '') {
-        $controller = self::getController();
-        if ($model == '') {
-            $model = $controller;
-        }
-        $obj = self::loadByName($model);
-        if ($obj->num == 1) {
-            F3::set('template', $controller);
-            $obj->copyTo('MODEL');
-        } else {
-            F3::reroute('/main/error/show/1');
-        }
-    }
-    static function getController() {
-        return F3::scrub(F3::get('PARAMS.controller'));
+    
+    static function getApp() {
+        return F3::scrub(F3::get('PARAMS.app'));
     }
 
     static function newSQliteDB() {
@@ -163,7 +75,7 @@ class Standard {
                         name TEXT,
                         text TEXT,
                         section TEXT,
-                        controller TEXT,
+                        app TEXT,
                         action TEXT,
                         target TEXT,
                         sort TEXT,

@@ -5,6 +5,7 @@ namespace main;
 class User {
 
     function get_login() {
+        \F3::set('site_titel', 'login');
         \F3::clear('SESSION');
         \F3::set('SESSION.login', 0);
         \F3::set('template', 'login');

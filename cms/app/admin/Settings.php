@@ -3,15 +3,17 @@ namespace admin;
 
 class Settings {
     function get_list() {
-        \Standard::getList('','', 'admin', 0);
+        \F3::set('site_titel', 'admin');
+        \GetHandler::getList('','', 'admin', 0);
     }
     
     function get_edit() {
-        \Standard::getEdit();
+        \F3::set('site_titel', 'admin');
+        \GetHandler::getEdit();
     }
     
     function post_edit() {
-        \Standard::postEdit();
+        \PostHandler::postEdit();
     }
 }
 ?>

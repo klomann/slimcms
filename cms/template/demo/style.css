@@ -1,6 +1,9 @@
 label, input {  
     display: block;  
 }  
+input:focus {
+    border-color: #CC3366;
+}
 body {  
     margin: auto;
     width: 940px;  
@@ -71,14 +74,15 @@ nav ul {
     border-top: 3px solid #000;
 }
  
-div.admin-list a, a.admin-button {
+div.admin-list a, a.admin-button, .editor-toggle-button {
     padding: 5px;
     background-color: #CC3366;
     font-weight: bold;
     color: #fff;
     margin-left: 5px;
+    cursor: pointer;
 }
-div.admin-list a:hover, a.admin-button:hover {
+div.admin-list a:hover, a.admin-button:hover, .editor-toggle-button:hover {
     background-color: #aaa;
     color: #000;
 }
@@ -206,18 +210,26 @@ a:hover {
     color: #666666;
 }
 
-.admin-list, article.page {
+article.page {
     margin-bottom: 20px;
     padding: 5px;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
     background-color: #fff;
-    padding:10px;
     border-radius: 10px 10px 10px 10px;
 }
 .admin-list {
-    width: 400px;
+    width: 200px;
+    background-color: #fff;
+    border-radius: 10px 10px 10px 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #CC3366;
+    border-bottom: 1px solid #CC3366;
 }
 .text {
     margin-left: 10px;
@@ -245,4 +257,19 @@ span {
 
 label {
     font-weight: bold;
+}
+
+.left {
+    float:left;
+    margin-right: 10px;
+}
+.right {
+    float: right;
+}
+.right-text {
+    text-align: right;
+    margin: 5px;
+}
+.clear {
+    clear:both;
 }

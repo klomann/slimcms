@@ -12,7 +12,7 @@
 	Bong Cosca <bong.cosca@yahoo.com>
 
 		@package FileDB
-		@version 2.0.10
+		@version 2.0.11
 **/
 
 //! Flat-file data access layer
@@ -28,7 +28,8 @@ class FileDB extends Base {
 
 	//@{ Locale-specific error/exception messages
 	const
-		TEXT_Criteria='Invalid criteria: %s';
+		TEXT_Criteria='Invalid criteria: %s',
+		TEXT_Callback='Invalid callback: %s';
 	//@}
 
 	public
@@ -96,6 +97,7 @@ class FileDB extends Base {
 		if (!is_file($file))
 			return array();
 		$text=self::getfile($file);
+		$out='';
 		switch ($this->format) {
 			case self::FORMAT_GZip:
 				$text=gzinflate($text);
@@ -338,7 +340,7 @@ class Jig extends Base {
 					return isset($obj[$key])?
 						call_user_func($val,$obj[$key]):TRUE;
 				}
-				elseif (!isset($obj[$field]))
+				elseif (!isset($obj[$field]) && !is_null($obj[$field]))
 					$result=FALSE;
 				elseif (is_array($cond)) {
 					$map=array(
@@ -484,7 +486,7 @@ class Jig extends Base {
 	function copyTo($name,$fields=NULL) {
 		if ($this->dry()) {
 			trigger_error(self::TEXT_JigEmpty);
-			return FALSE;
+			return;
 		}
 		if (is_string($fields))
 			$list=preg_split('/[\|;,]/',$fields,0,PREG_SPLIT_NO_EMPTY);
@@ -523,7 +525,7 @@ class Jig extends Base {
 			if ($jig=$this->findone($cond,$seq,$ofs)) {
 				if (method_exists($this,'beforeLoad') &&
 					$this->beforeLoad()===FALSE)
-					return;
+					return FALSE;
 				// Hydrate Jig
 				$this->_id=$jig->_id;
 				foreach ($jig->object as $key=>$val)
